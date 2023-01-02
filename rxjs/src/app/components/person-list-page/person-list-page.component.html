@@ -1,0 +1,15 @@
+<nz-table nzShowSizeChanger [nzData]="users" [nzFrontPagination]="false" [nzLoading]="loading" [nzTotal]="total"
+    [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQueryParamsChange($event)">
+    <thead>
+        <tr>
+            <th nzColumnKey="id" [nzSortFn]="true">ID</th>
+            <th nzColumnKey="name" [nzSortFn]="true">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of users">
+            <td>{{ data.id }} </td>
+            <td>{{ data.name }} </td>
+        </tr>
+    </tbody>
+</nz-table>
