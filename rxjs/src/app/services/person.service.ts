@@ -37,7 +37,7 @@ export class PersonService {
     if (!this.subjectMap.has(subjectKey)) {
       this.subjectMap.set(
         subjectKey,
-        new ReplaySubject<IPagedResult<IPerson>>(1)
+        new ReplaySubject<IPagedResult<IPerson>>(1, 3000)
       );
       this.fetchTimes(params);
     }
@@ -50,6 +50,10 @@ export class PersonService {
     const subject$: ReplaySubject<IPagedResult<IPerson>> = this.subjectMap.get(
       subjectKey
     ) as ReplaySubject<IPagedResult<IPerson>>;
+
+    if (subject$.observed) {
+      this.fetchTimes(params);
+    }
 
     return subject$.asObservable();
   }
